@@ -38,7 +38,7 @@ class ConcordiaSpider(scrapy.Spider):
             file.flush()
 
         # Make sure to extract only text from important pages
-        link_extractor = LinkExtractor(allow=('.*news.*', '.*research.*', '.*next-gen.*'), allow_domains=self.allowed_domains, unique=True, strip=True)
+        link_extractor = LinkExtractor(allow=('.*news.*', '.*research.*', '.*next-gen.*'), deny=('https://www.concordia.ca/research/lifestyle-addiction/tools/scientific-monitoring.html'), allow_domains=self.allowed_domains, unique=True, strip=True)
         
         # Check before extracting the links
         for link in link_extractor.extract_links(response):
