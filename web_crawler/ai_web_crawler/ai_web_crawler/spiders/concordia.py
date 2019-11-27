@@ -25,7 +25,7 @@ class ConcordiaSpider(scrapy.Spider):
         for i in range(2,7):
             headers.extend(main_content.xpath('//h'+str(i)+'//text()').getall())
         
-        with open('../concordia/' + str(ConcordiaSpider.number), 'w') as file:
+        with open('../../corpora/concordia/' + str(ConcordiaSpider.number), 'w') as file:
             content = ' '.join(paragraphs).strip() + ' '.join(headers).strip()
             content = content.replace('\n', ' ')
             file.write(content)
@@ -33,7 +33,7 @@ class ConcordiaSpider(scrapy.Spider):
 
         ConcordiaSpider.number += 1
 
-        with open('../concordia/links/links', 'a') as file:
+        with open('../../corpora/concordia/links/links', 'a') as file:
             file.write(str(ConcordiaSpider.number-1) + ':' + response.url + '\n')
             file.flush()
 

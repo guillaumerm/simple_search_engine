@@ -29,7 +29,7 @@ class AitopicsSpider(scrapy.Spider):
     def parse_tags(self, response):
         AitopicsSpider.number += 1
         tags = json.loads(re.search('\[.*\]', response.xpath('//div/script/text()')[0].get()).group(0))
-        with open('../aitopics/' + str(AitopicsSpider.number), 'w') as file:
+        with open('../../corpora/aitopics/' + str(AitopicsSpider.number), 'w') as file:
             file.write(' '.join(tag['concept-tag'] for tag in tags))
             file.flush()
 
