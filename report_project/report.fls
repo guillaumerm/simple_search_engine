@@ -103,9 +103,11 @@ INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 OUTPUT /Users/guillaume/Projects/Python/comp_479_project/report_project/report.toc
 INPUT /Users/guillaume/Projects/Python/comp_479_project/report_project/./work-done.tex
 INPUT /Users/guillaume/Projects/Python/comp_479_project/report_project/./work-done.tex
+INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmtt12.tfm
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
-INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmtt12.tfm
+INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/base/omscmr.fd
+INPUT /usr/local/texlive/2018/texmf-dist/tex/latex/base/omscmr.fd
 INPUT /Users/guillaume/Projects/Python/comp_479_project/report_project/difficulty1.png
 INPUT /Users/guillaume/Projects/Python/comp_479_project/report_project/difficulty1.png
 INPUT /Users/guillaume/Projects/Python/comp_479_project/report_project/difficulty1.png
@@ -123,4 +125,5 @@ INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.p
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb
+INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb

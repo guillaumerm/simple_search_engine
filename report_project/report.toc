@@ -3,7 +3,7 @@
 \contentsline {subsection}{\numberline {1.1.1}Concordia Crawler}{1}{subsection.1.1.1}
 \contentsline {subsection}{\numberline {1.1.2}AITopics Crawler}{2}{subsection.1.1.2}
 \contentsline {section}{\numberline {1.2}Search Engine}{2}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}Tf-idf Ranking}{2}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.1}Tf-idf Ranking}{3}{subsection.1.2.1}
 \contentsline {subsubsection}{With AITopics Document Frequencies}{3}{subsection.1.2.1}
 \contentsline {subsection}{\numberline {1.2.2}BM25 Ranking}{3}{subsection.1.2.2}
 \contentsline {subsubsection}{With AITopics Document Frequencies}{3}{subsection.1.2.2}
@@ -21,19 +21,53 @@
 \contentsline {subsubsection}{Tf-Idf with AITopics Document Frequencies}{7}{subsection.2.1.2}
 \contentsline {subsection}{\numberline {2.1.3}department carrying out ai research}{7}{subsection.2.1.3}
 \contentsline {subsubsection}{Original BM25}{7}{subsection.2.1.3}
-\contentsline {subsubsection}{BM25 with AITopics Document Frequencies}{9}{subsection.2.1.3}
-\contentsline {subsubsection}{Original Tf-Idf}{9}{subsection.2.1.3}
+\contentsline {subsubsection}{BM25 with AITopics Document Frequencies}{8}{subsection.2.1.3}
+\contentsline {subsubsection}{Original Tf-Idf}{8}{subsection.2.1.3}
 \contentsline {subsubsection}{Tf-Idf with AITopics Document Frequencies}{9}{subsection.2.1.3}
 \contentsline {section}{\numberline {2.2}Which researchers are working on AI research?}{9}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}ai researchers}{9}{subsection.2.2.1}
-\contentsline {subsubsection}{BM25 with AITopics Document Frequencies}{9}{subsection.2.2.1}
-\contentsline {subsubsection}{Original Tf-Idf}{9}{subsection.2.2.1}
-\contentsline {subsubsection}{Tf-Idf with AITopics Document Frequencies}{9}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}concordia chair machine learning}{9}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}thesis machine learning}{9}{subsection.2.2.3}
-\contentsline {section}{\numberline {2.3}What AI research is being conducted at Concordia?}{9}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}nlp research at concordia}{9}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}neural network at concordia}{9}{subsection.2.3.2}
-\contentsline {subsection}{\numberline {2.3.3}pattern recognition research at concordia}{9}{subsection.2.3.3}
-\contentsline {chapter}{\numberline {3}Difficulties}{10}{chapter.3}
-\contentsline {chapter}{References}{11}{section*.2}
+\contentsline {subsubsection}{Original BM25}{9}{subsection.2.2.1}
+\contentsline {subsubsection}{BM25 with AITopics Document Frequencies}{10}{subsection.2.2.1}
+\contentsline {subsubsection}{Original Tf-Idf}{10}{subsection.2.2.1}
+\contentsline {subsubsection}{Tf-Idf with AITopics Document Frequencies}{10}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}concordia chair machine learning}{11}{subsection.2.2.2}
+\contentsline {subsubsection}{Original BM25}{11}{subsection.2.2.2}
+\contentsline {subsubsection}{BM25 with AITopics Document Frequencies}{12}{subsection.2.2.2}
+\contentsline {subsubsection}{Original Tf-Idf}{12}{subsection.2.2.2}
+\contentsline {subsubsection}{Tf-Idf with AITopics Document Frequencies}{12}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}thesis machine learning}{13}{subsection.2.2.3}
+\contentsline {subsubsection}{Original BM25}{13}{subsection.2.2.3}
+\contentsline {subsubsection}{BM25 with AITopics Document Frequencies}{13}{subsection.2.2.3}
+\contentsline {subsubsection}{Original Tf-Idf}{13}{subsection.2.2.3}
+\contentsline {subsubsection}{Tf-Idf with AITopics Document Frequencies}{14}{subsection.2.2.3}
+\contentsline {section}{\numberline {2.3}What AI research is being conducted at Concordia?}{15}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}nlp research at concordia}{15}{subsection.2.3.1}
+\contentsline {subsubsection}{Original BM25}{15}{subsection.2.3.1}
+\contentsline {subsubsection}{BM25 with AITopics Document Frequencies}{15}{subsection.2.3.1}
+\contentsline {subsubsection}{Original Tf-Idf}{15}{subsection.2.3.1}
+\contentsline {subsubsection}{Tf-Idf with AITopics Document Frequencies}{16}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}neural network at concordia}{16}{subsection.2.3.2}
+\contentsline {subsubsection}{Original BM25}{16}{subsection.2.3.2}
+\contentsline {subsubsection}{BM25 with AITopics Document Frequencies}{16}{subsection.2.3.2}
+\contentsline {subsubsection}{Original Tf-Idf}{16}{subsection.2.3.2}
+\contentsline {subsubsection}{Tf-Idf with AITopics Document Frequencies}{17}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}pattern recognition research at concordia}{17}{subsection.2.3.3}
+\contentsline {subsubsection}{Original BM25}{17}{subsection.2.3.3}
+\contentsline {subsubsection}{BM25 with AITopics Document Frequencies}{17}{subsection.2.3.3}
+\contentsline {subsubsection}{Original Tf-Idf}{18}{subsection.2.3.3}
+\contentsline {subsubsection}{Tf-Idf with AITopics Document Frequencies}{18}{subsection.2.3.3}
+\contentsline {chapter}{\numberline {3}Answers}{19}{chapter.3}
+\contentsline {section}{\numberline {3.1}Which departments have AI research?}{19}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Mine}{19}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Daniel Stroppolo}{19}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Comparaison}{20}{subsection.3.1.3}
+\contentsline {section}{\numberline {3.2}Which researchers are working on AI research?}{20}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Mine}{20}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Daniel Stroppolo}{21}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Comparison}{21}{subsection.3.2.3}
+\contentsline {section}{\numberline {3.3}What AI research is being conducted at Concordia?}{21}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Mine}{21}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Daniel Stroppolo}{22}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}Comparison}{22}{subsection.3.3.3}
+\contentsline {chapter}{\numberline {4}Difficulties}{23}{chapter.4}
+\contentsline {chapter}{References}{24}{section*.2}

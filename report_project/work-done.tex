@@ -6,6 +6,11 @@ The implementation of the project required a new tool to be made that is the web
 
 \par The framework that was used to build the web crawler to scrape the required domain was Scrapy \cite{scrapy}. Scrapy is Python library which takes care of crawling websites following the proper etiquette. Scrapy also offers a powerful scraping module which allows us to extract with ease the text from the HTML page that we want.
 
+\par Scrapy is run by executing the following command adding 
+\begin{verbatim}
+    scrapy crawl name_of_spider [-s CLOSESPIDER_PAGECOUNT = #]
+\end{verbatim}
+
 \subsection{Concordia Crawler}
 
 \par The crawler was made to start from the \url{https://concordia.ca/ research.html} link. Since these resources are HTML files I've decided to consider the content of the paragraphs and headings tags. The crawler was implemented to save the document to a file with the number of the link. The number and the link was then saved in a separate file to be able to retrieve the link for queries.
@@ -17,6 +22,10 @@ The implementation of the project required a new tool to be made that is the web
 
 \par The crawler was made to start from the \url{https://concordia.ca/search} link and extract artificial research related keywords. This website includes a section which categorized all articles under a certain technology. Since the since index needed to be related to artificial intelligence I decided to limit the crawling to the artificial intelligence articles.
 \par Since we were only to extract keywords related to artificial intelligence research the crawling of the articles content was not constructive in the objective of the index. This is where the concept tags that AITopics assigns to articles are useful. The crawler was programed in extracting the concept tags from all articles and these would be used as the documents for the index.
+\par The df values were compiled using the SPIMI then traversed through the entire index and save the df for each term to be used later in the ConcordiaAI index. To see the compiled df value please refer to the document bellow
+\begin{verbatim}
+    /indices/AIindex/documents_length.txt
+\end{verbatim}
 
 
 \section{Search Engine}
@@ -111,31 +120,264 @@ The tf-idf ranking is the ranking scheme that was the most affected by the chang
 
 \subsubsection{BM25 with AITopics Document Frequencies}\label{query-3-bm25-aitopics}
 
-\subsubsection{Original Tf-Idf}
+\par Similarly to the BM25 from \ref{query-2-bm-25-aitopics} the results are identical to the original BM25 from \ref{query-3-bm25}. This further demonstrate that BM25 is impervious to the change of the document frequencies.
 
-\subsubsection{Tf-Idf with AITopics Document Frequencies}
+\subsubsection{Original Tf-Idf}\label{query-3-tf-idf}
+
+\par Results $@10$ shows a precision of $8/10=0.8$. The results seem to indicate that using unique terms such as ai tend to improve the relevance of the documents return from this corpus. Note that the issue with duplicate is still present.
+\par Results $@50$ shows a decrease in usefulness crossed the 10th rank. This could be understandable as the abbreviation of the term ai is a short form of artificial intelligence. Since Concordia website target audience in higher education the use of abbreviation such as ai tends to be use less then other news outlet.
+\par Results ranking between $@50$ and $@100$ tends to be completely non-relevant to the information for which the query is trying to satisfy. This further demonstrate that the use of the term ai use not as common as artificial intelligence. 
+\par In conclusion, the query tends to satisfy the information $@10$ but tends to drift as we increase in rank. This query helps filter out the documents that contains the term 'artificial intelligence' at the cost of numbers of relevant documents retrieved.
+
+\subsubsection{Tf-Idf with AITopics Document Frequencies} \label{query-3-tf-idf-aitopics}
+
+\par The use of the document frequencies from AITopics did contribute to improve the usefulness results $@10$. Even though the results are less precise then BM25 from \ref{query-3-bm25} they are still relevant to the query. $P@10=8/10=0.8$ which is a more useful result then from Tf-idf from \ref{query-3-tf-idf}.
+\par While analyzing the results $@50$ a decrease of usefulness can be observed when the results goes beyond $@10$. It seems that the use of document frequencies from AITopics moved the more relevant document found in the $@100$ from \ref{query-2-tf-idf} but consequently move back the non-relevant document back.
+\par Results $@100$ are similar to the results $@50$, that is some documents past the 50th rank are relevant but most are not relevant to the query, consequently not satisfying the information need. As stated previously, the use of AITopics document frequencies tends to rank the most relevant documents at higher rank.
+\par The use of AITopics document frequencies is sensible in this scenario as it tend to sort relevant documents first before non-relevant. But this technique have limits that starts to show around $@50$ where the results start to be similar in relevance to the one found in \ref{query-2-tf-idf} for Tf-Idf without the AITopics document frequencies.
 
 \section{Which researchers are working on AI research?}
 
 \subsection{ai researchers}\label{query-4}
 
+\subsubsection{Original BM25}\label{query-4-bm25}
+
+\par Results $@10$ shows a precision of $10/10=1$. The results seem to indicate that using unique terms such as ai tend to improve the relevance of the documents return from this corpus. Note that the issue with duplicate is still present.
+\par Results $@50$ shows a decrease in usefulness crossed the 10th rank. This could be understandable as the abbreviation of the term ai is a short form of artificial intelligence. Since Concordia website target audience in higher education the use of abbreviation such as ai tends to be use less then other news outlet.
+\par Results ranking between $@50$ and $@100$ tends to be completely non-relevant to the information for which the query is trying to satisfy. This further demonstrate that the use of the term ai use not as common as artificial intelligence. 
+\par In conclusion, the query tends to satisfy the information $@10$ but tends to drift as we increase in rank. This query helps filter out the documents that contains the term 'artificial intelligence' at the cost of numbers of relevant documents retrieved. Furthermore, simpler queries tends to have better result. This might be due to the lack of words for the results to drift on.
+
 \subsubsection{BM25 with AITopics Document Frequencies}\label{query-4-bm25-aitopics}
+
+\par Similarly to the BM25 from \ref{query-2-bm-25-aitopics} the results are identical to the original BM25 from \ref{query-4-bm25}. This further demonstrate that BM25 is impervious to the change of the document frequencies.
 
 \subsubsection{Original Tf-Idf}\label{query-4-tf-idf}
 
-\subsubsection{Tf-Idf with AITopics Document Frequencies}\label{query-4-tf-idf-aitopics}
+\par Results $@10$ shows a precision of $10/10=1$. The results seem to indicate that using unique terms such as ai tend to improve the relevance of the documents return from this corpus. Note that the issue with duplicate is still present.
+\par Results $@50$ shows a decrease in usefulness crossed the 10th rank. This could be understandable as the abbreviation of the term ai is a short form of artificial intelligence. Since Concordia website target audience in higher education the use of abbreviation such as ai tends to be use less then other news outlet.
+\par Results ranking between $@50$ and $@100$ tends to be completely non-relevant to the information for which the query is trying to satisfy. This further demonstrate that the use of the term ai use not as common as artificial intelligence. 
+\par In conclusion, the query tends to satisfy the information $@10$ but tends to drift as we increase in rank. This query helps filter out the documents that contains the term 'artificial intelligence' at the cost of numbers of relevant documents retrieved.
 
-\subsection{concordia chair machine learning}
+\subsubsection{Tf-Idf with AITopics Document Frequencies} \label{query-4-tf-idf-aitopics}
 
-\subsection{thesis machine learning}
+\par The use of the document frequencies from AITopics did contribute to did not improve the usefulness results $@10$. Since both the results for tf-idf and BM25 from \ref{query-4-bm25} they are still relevant to the query. $P@10=10/10=1$ which is a more useful result then from Tf-idf from \ref{query-4-tf-idf}.
+\par While analyzing the results $@50$ a decrease of usefulness can be observed when the results goes beyond $@10$. It seems that the use of document frequencies from AITopics moved the more relevant document found in the $@100$ from \ref{query-4-tf-idf} but consequently move back the non-relevant document back.
+\par Results $@100$ are similar to the results $@50$, that is some documents past the 50th rank are relevant but most are not relevant to the query, consequently not satisfying the information need. As stated previously, the use of AITopics document frequencies tends to rank the most relevant documents at higher rank.
+\par The use of AITopics document frequencies is sensible in this scenario as it tend to sort relevant documents first before non-relevant. But this technique have limits that starts to show around $@50$ where the results start to be similar in relevance to the one found in \ref{query-2-tf-idf} for Tf-Idf without the AITopics document frequencies.
+
+\subsection{concordia chair machine learning}\label{query-5}
+
+\subsubsection{Original BM25}\label{query-5-bm25}
+
+\par Results $@10$ shows a precision of $7/10=0.7$. The results seem to indicate that using more specific terms such as 'research chair' tend to improve the relevance of the documents return from this corpus. Note that the issue with duplicate is still present.
+\par Results $@50$ shows a decrease in usefulness crossed the 10th rank. This could be understandable as other term then research chair could be used. Since no query expansion is being done then this limit the results being returned to only the ones with research chair present in them.
+\par Results ranking between $@50$ and $@100$ tends to be completely non-relevant to the information for which the query is trying to satisfy. Unfortunately the term research as a wide use in the english language and tends to drift the results from the informaton need. 
+\par In conclusion, the query tends to satisfy the information $@10$ but tends to drift as we increase in rank. This query helps searching for results where the term 'ai' or 'researchers' was not used in the document.
+
+\subsubsection{BM25 with AITopics Document Frequencies}\label{query-5-bm25-aitopics}
+
+\par Similarly to the BM25 from \ref{query-2-bm-25-aitopics} the results are identical to the original BM25 from \ref{query-3-bm25}. This further demonstrate that BM25 is impervious to the change of the document frequencies.
+
+\subsubsection{Original Tf-Idf}\label{query-5-tf-idf}
+
+\par Results $@10$ shows a precision of $0/10=0$. The results seem to indicate that using the tf-idf ranking scheme made the results drift away from the information need. It seems that tf-idf perform better on small simple queries. Note that the issue with duplicate is still present.
+\par Results $@50$ shows a decrease in usefulness crossed the 10th rank. This could be understandable as the abbreviation of the term ai is a short form of artificial intelligence. Since Concordia website target audience in higher education the use of abbreviation such as ai tends to be use less then other news outlet.
+\par Results ranking between $@50$ and $@100$ tends to be completely non-relevant to the information for which the query is trying to satisfy. This further demonstrate that the use of the term ai use not as common as artificial intelligence. 
+\par In conclusion, using this ranking scheme with this query does not produce useful results.
+
+\subsubsection{Tf-Idf with AITopics Document Frequencies} \label{query-5-tf-idf-aitopics}
+
+\par The use of the document frequencies from AITopics did contribute to improve the usefulness results $@10$. Even though the results are less precise then BM25 from \ref{query-5-bm25} they are still relevant to the query. $P@10=10/10=0.8$ which is a more useful result then from Tf-idf from \ref{query-5-tf-idf}.
+\par While analyzing the results $@50$ a decrease of usefulness can be observed when the results goes beyond $@10$. It seems that the use of document frequencies from AITopics moved the more relevant document found in the $@100$ from \ref{query-5-tf-idf} but consequently move back the non-relevant document.
+\par Results $@100$ are similar to the results $@50$, that is some documents past the 50th rank are relevant but most are not relevant to the query, consequently not satisfying the information need. As stated previously, the use of AITopics document frequencies tends to rank the most relevant documents at higher rank.
+\par The use of AITopics document frequencies is sensible in this scenario as it tend to sort relevant documents first before non-relevant. But this technique have limits that starts to show around $@50$ where the results start to be similar in relevance to the one found in \ref{query-5-tf-idf} for Tf-Idf without the AITopics document frequencies.
+
+\subsection{thesis machine learning}\label{query-6}
+
+\subsubsection{Original BM25}\label{query-6-bm25}
+
+\par Results $@10$ shows a precision of $6/10=0.6$. The results seem to indicate that using unique terms such as ai tend to improve the relevance of the documents return from this corpus. Note that the issue with duplicate is still present.
+\par Results $@50$ shows a decrease in usefulness crossed the 10th rank. This could be understandable as the abbreviation of the term ai is a short form of artificial intelligence. Since Concordia website target audience in higher education the use of abbreviation such as ai tends to be use less then other news outlet.
+\par Results ranking between $@50$ and $@100$ tends to be completely non-relevant to the information for which the query is trying to satisfy. This further demonstrate that the use of the term ai use not as common as artificial intelligence. 
+\par In conclusion, the query tends to satisfy the information $@10$ but tends to drift as we increase in rank. This query helps filter out the documents that contains the term 'artificial intelligence' at the cost of numbers of relevant documents retrieved.
+
+\subsubsection{BM25 with AITopics Document Frequencies}\label{query-6-bm25-aitopics}
+
+\par Similarly to the BM25 from \ref{query-5-bm25-aitopics} the results are identical to the original BM25 from \ref{query-3-bm25}. This further demonstrate that BM25 is impervious to the change of the document frequencies.
+
+\subsubsection{Original Tf-Idf}\label{query-6-tf-idf}
+
+\par Results $@10$ shows a precision of $0/10=0$. The results seem to indicate that using using this query with tf-idf on this corpus makes the results drift from the information need. Note that the issue with duplicate is still present.
+\par Results $@50$ shows similar result to $@10$. As hypothesize earlier tf-idf tends to perform better on simple and short query. This query have terms that are wildly used in an academic. Hence, this ranking scheme drifts on the term 'chair', 'concordia' and 'learning'.
+\par Results ranking between $@50$ and $@100$ tends to be completely non-relevant to the information for which the query is trying to satisfy.
+\par In conclusion, the original tf-idf ranking scheme does not fare well with the query. The query as terms that will make the ranking drifts from the information need. As explained, using specific term and short queries makes the tf-idf not drift.
+
+\subsubsection{Tf-Idf with AITopics Document Frequencies} \label{query-6-tf-idf-aitopics}
+
+\par The use of the document frequencies from AITopics did contribute to improve the usefulness results $@10$. Even though the results are less precise then BM25 from \ref{query-5-bm25} they are still relevant to the query. $P@10=8/10=0.8$ which is a more useful result then from Tf-idf from \ref{query-3-tf-idf}.
+\par While analyzing the results $@50$ a decrease of usefulness can be observed when the results goes beyond $@10$. It seems that the use of document frequencies from AITopics moved the more relevant document found in the $@100$ from \ref{query-2-tf-idf} but consequently move back the non-relevant document back.
+\par Results $@100$ are similar to the results $@50$, that is some documents past the 50th rank are relevant but most are not relevant to the query, consequently not satisfying the information need. As stated previously, the use of AITopics document frequencies tends to rank the most relevant documents at higher rank.
+\par The use of AITopics document frequencies is sensible in this scenario as it tend to sort relevant documents first before non-relevant. But this technique have limits that starts to show around $@50$ where the results start to be similar in relevance to the one found in \ref{query-2-tf-idf} for Tf-Idf without the AITopics document frequencies.
 
 \section{What AI research is being conducted at Concordia?}
 
-\subsection{nlp research at concordia}
+\subsection{nlp research at concordia}\label{query-7}
 
-\subsection{neural network at concordia}
+\subsubsection{Original BM25}\label{query-7-bm25}
 
-\subsection{pattern recognition research at concordia}
+\par Results $@10$ shows a precision of $9/10=0.9$. The results seem to further demonstrate that using unique terms such as nlp tend to improve the relevance of the documents return from this corpus. Note that the issue with duplicate is still present.
+\par Results $@50$ shows a decrease in usefulness crossed the 10th rank. This could be understandable as the abbreviation of the term nlp could be less used then its counter part `natural language processing'. Since Concordia website target audience in higher education the use of abbreviation such as nlp tends to be use less then other news outlet.
+\par Results ranking between $@50$ and $@100$ tends to be completely non-relevant to the information for which the query is trying to satisfy. The last results tend to only contain one of the terms from the query making it less likely to satisfy the information need. 
+\par In conclusion, the query tends to satisfy the information $@10$ but tends to drift as we increase in rank. This query helps filter out the documents that contains the term 'language' and 'natural' two widely use term in academia. Yet, this comes at the cost of numbers of relevant documents retrieved.
+
+\subsubsection{BM25 with AITopics Document Frequencies}\label{query-7-bm25-aitopics}
+
+\par Similarly to the BM25 from \ref{query-6-bm25-aitopics} the results are identical to the original BM25 from \ref{query-7-bm25}. This further demonstrate that BM25 is impervious to the change of the document frequencies.
+
+\subsubsection{Original Tf-Idf}\label{query-7-tf-idf}
+
+\par The ranking scheme tf-idf shows a $P@10=0/10=0$. This precision foreshadows the remaining result return by this scheme. In brief, this ranking scheme does not return results that satisfies the information need.
+
+\subsubsection{Tf-Idf with AITopics Document Frequencies} \label{query-7-tf-idf-aitopics}
+
+\par Similarly to the Tf-idf ranking for \ref{query-7-tf-idf} replacing the document frequencies for the ones calculated from AITopics resulted in no improvement to the usefulness of the results. 
+
+\subsection{neural network at concordia}\label{query-8}
+
+\subsubsection{Original BM25}\label{query-8-bm25}
+
+\par Results $@10$ shows a precision of $9/10=0.9$. The results seem to indicate that using unique terms such as ai tend to improve the relevance of the documents return from this corpus. Note that the issue with duplicate is still present.
+\par Results $@50$ shows a decrease in usefulness crossed the 10th rank. This could be understandable as the term 'neural' network is widely use in neuroscience. Yet, BM25 was able to rank the relevant documents first.
+\par Results ranking between $@50$ and $@100$ tends to be completely non-relevant to the information for which the query is trying to satisfy. As mentioned neural network is a specific topic in artificial intelligence and thus as the rank increase more and more documents are returned concerning neuroscience. 
+\par In conclusion, the query tends to satisfy the information $@10$ but tends to drift as we increase in rank. The BM25 ranking scheme does a efficient outcome in ranking the relevant document first.
+
+\subsubsection{BM25 with AITopics Document Frequencies}\label{query-8-bm25-aitopics}
+
+\par Similarly to the BM25 from \ref{query-7-bm25-aitopics} the results are identical to the original BM25 from \ref{query-7-bm25}. This further demonstrate that BM25 is impervious to the change of the document frequencies.
+
+\subsubsection{Original Tf-Idf}\label{query-8-tf-idf}
+
+\par The tf-idf ranking scheme did not fare well with this query. With a $P@10=0$ and the usefulness of the results up to $@110$ is low we had to conclude that the query is to intricate for this ranking scheme.
+
+\subsubsection{Tf-Idf with AITopics Document Frequencies} \label{query-8-tf-idf-aitopics}
+
+\par The use of the document frequencies from AITopics did contribute to improve the usefulness results $@10$. Even though the results are less precise then BM25 from \ref{query-7-bm25} they are still relevant to the query. $P@10=3/10=0.3$ which is a more useful result then from Tf-idf from \ref{query-8-tf-idf}.
+\par While analyzing the results $@50$ a decrease of usefulness can be observed when the results goes beyond $@10$. It seems that the use of document frequencies from AITopics moved the more relevant document found in the $@100$ from \ref{query-8-tf-idf} but consequently move back the non-relevant document back.
+\par Results $@100$ are similar to the results $@50$, that is some documents past the 50th rank are relevant but most are not relevant to the query, consequently not satisfying the information need. As stated previously, the use of AITopics document frequencies tends to rank the most relevant documents at higher rank.
+\par The use of AITopics document frequencies is sensible in this scenario as it tend to sort relevant documents first before non-relevant. But this technique have limits that starts to show around $@50$ where the results start to be similar in relevance to the one found in \ref{query-8-tf-idf} for Tf-Idf without the AITopics document frequencies.
+
+\subsection{pattern recognition research at concordia}\label{query-9}
+
+\subsubsection{Original BM25}\label{query-9-bm25}
+
+\par Results $@10$ shows a precision of $0/10=0.6$. The results seem to indicate that this query did not return any relevant results for the first 10 results. Note that the duplicate issue is still a problem.
+\par Results $@50$ shows no increase in usefulness. Strangely even the CENPARMI appears less then expected in the results.
+\par Results ranking between $@50$ and $@100$ are as completely non-relevant to the information for which the query is trying to satisfy. This further demonstrate that this query drifts.
+\par In conclusion, this query should not be considered as a useful query.
+
+\subsubsection{BM25 with AITopics Document Frequencies}\label{query-9-bm25-aitopics}
+
+\par Similarly to the BM25 from \ref{query-2-bm-25-aitopics} the results are identical to the original BM25 from \ref{query-3-bm25}. This further demonstrate that BM25 is impervious to the change of the document frequencies.
+
+\subsubsection{Original Tf-Idf}\label{query-9-tf-idf}
+
+\par These result are as scattered as for the BM25 from \ref{query-9-bm25}. The results were scattered to a certain degree that the user would have a hard time to retrieve any useful information from the result set.
+
+\subsubsection{Tf-Idf with AITopics Document Frequencies} \label{query-9-tf-idf-aitopics}
+
+\par Particularly, this was the only query that return the same result for Tf-idf with AITopics Document Frequencies and the original Tf-idf. This is peculiar situation that might be explained by none of the term being found in the concept tags of AITopics. 
+
+\chapter{Answers}
+
+\section{Which departments have AI research?}
+
+\subsection{Mine}
+
+\begin{itemize}
+    \item Department of Computer Science and Software Engineering (CSSE)
+    \item Concordia Institute for Information Systems Engineering (CIISE)
+    \item Computational Linguistics at Concordia (CLaC) Laboratory
+    \item Centre for Pattern Recognition and Machine Intelligence
+    \item Department of Mathematics \& Statistics
+    \item Department of Studio Arts
+    \item Concordia Institute of Aerospace Design and Innovation
+    \item Design and Computation Arts
+\end{itemize}
+
+\subsection{Daniel Stroppolo}
+
+\begin{itemize}
+    \item Building Engineering
+    \item Computer Engineering
+    \item Information Systems Engineering
+    \item Computer Science
+\end{itemize}
+
+\subsection{Comparaison}
+
+\par Seems that Daniel's answers were mostly related to mostly Engineering. This might be due to the use of only the term 'artificial intelligence' in his query. When the term 'machine learning' in queries helped to broaden the results to other STEM departments and even fine arts.
+
+\section{Which researchers are working on AI research?}
+
+\subsection{Mine}
+
+\begin{itemize}
+    \item Xavier-Henri Hervé
+    \item Sydney Swaine-Simon
+    \item Charles Onu
+    \item Sabine Bergler
+    \item Anne Martel
+    \item Jason Edward Lewis
+    \item Dr. C. Y. Suen
+    \item Hassan Rivaz
+    \item Michael Hallett
+    \item Eromonsele Samuel Oboh
+    \item Nizar Bouguila
+    \item Dr. T. Fevens
+    \item Dr. O. Ormandieva
+    \item Dr. L. Kosseim
+    \item Dr. Marie-Jean Meurs
+    \item Dr. W. Lucia
+    \item Dr. J. Bentahar
+    \item Dr. C. Poullis
+    \item Dr. P. Rigby
+    \item [Many more]    
+\end{itemize}
+
+\subsection{Daniel Stroppolo}
+
+\begin{itemize}
+    \item Dr. Leila Kosseim
+\end{itemize}
+
+\subsection{Comparison}
+
+\par Seems that Daniel's answers were mostly related to mostly one individual. This might be due to the use of only the term 'artificial intelligence' in his queries. When the term 'machine learning' and 'neural network' in queries helped to broaden the results to other STEM departments and even fine arts. 
+
+\section{What AI research is being conducted at Concordia?}
+
+\subsection{Mine}
+
+\begin{itemize}
+    \item Tool that analyzes informal online writing
+    \item Software architecture that accelerates research and boosts quality of writing
+    \item Neural Networks as Pseudorandom Number Generators
+    \item Neural Network Approaches to Implicit Discourse Relation Recognition
+\end{itemize}
+
+\subsection{Daniel Stroppolo}
+
+\begin{itemize}
+    \item Pattern recognition (various theses)
+    \item Bioinformatics and software supporting it
+    \item Smart buildings
+    \item Linguistics
+    \item Cyber Security
+\end{itemize}
+
+\subsection{Comparison}
+
+\par Daniel was able to have broader results on the research conducted at Concordia that uses artificial intelligence. 
 
 \chapter{Difficulties}
 
@@ -144,4 +386,4 @@ The tf-idf ranking is the ranking scheme that was the most affected by the chang
 \begin{center}
     \includegraphics[width=\textwidth]{difficulty1.png}
 \end{center}
-
+\par In conclusion, lack of crawling/scraping proved to be any issue that both I and my partner encountered in the project. If something should be improved upon for any next iteration it would be to make specialized rule for each department and make sure that only the right information is collected from the website.
