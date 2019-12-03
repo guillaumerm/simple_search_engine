@@ -331,14 +331,7 @@ def SPIMI_index_construction(corpus_location):
 
         return merged_blocks
 
-    
+SPIMI_index_construction('/home/guillaume/web_crawler/corpora/concordia')
 
-index = SearchEngine(SPIMI_index_construction('/Users/guillaume/Projects/Python/comp_479_project/aitopics/'), documents_length)
-
-while True:
-    try:
-        query = Query(input('Enter query:'))
-    except Exception as ex:
-        print(ex.args[0])
-        continue
-    print(index.search(query))
+with open('../indices/ConcordiaAI/documents_length.txt', 'w') as file:
+    file.write(str(documents_length))

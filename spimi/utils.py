@@ -49,13 +49,13 @@ def intersect(posting_list_one, posting_list_two):
         p1_docID = int(p1[0])
         p2_docID = int(p2[0])
         while(True):
-            if p1[0] == p2[0]:
-                intersection.append(p1)
+            if p1_docID == p2_docID:
+                intersection.append(p1_docID)
                 p1 = next(shortest_iterator)
                 p2 = next(longest_iterator)
                 p1_docID = int(p1[0])
                 p2_docID = int(p2[0])
-            elif p1[0] < p2[0]:
+            elif p1_docID < p2_docID:
                 p1 = next(shortest_iterator)
                 p1_docID = int(p1[0])
             else:

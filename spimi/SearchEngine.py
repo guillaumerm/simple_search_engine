@@ -14,7 +14,7 @@ class SearchEngine(object):
         for length in self.documents.values():
             self.number_of_tokens += length
 
-    def search(self, query):
+    def search(self, query, weights, k):
 
         # If the query is empty
         if len(query) <= 0:
@@ -22,7 +22,9 @@ class SearchEngine(object):
 
         documents_to_rank = {}
         
-        sum_of_idfs = 0
+        
+        idfs = {}
+        weight_idfs = {}
 
         # Find all the postings list for the terms in the query
         for term in query:
@@ -32,8 +34,33 @@ class SearchEngine(object):
                 documents_to_rank.setdefault(posting[0], []).append((term, posting[1]))
 
             if (len(postings) > 0):
-                sum_of_idfs += log(10, len(self.documents) / len(postings))
+                idfs[term] = log(10, len(self.documents) / len(postings))
 
+                if term in weights:
+                    if len(self.documents) < weights[term]:
+                        weight_idfs[term] = 0
+                    else:
+                        weight_idfs[term] = log(10, len(self.documents) / weights[term])
+                else:
+                    weight_idfs[term] = idfs[term]
+
+        bm25_ranked_documents = sorted(self.BM25_ranking(documents_to_rank, sum(idfs.values())).items(), key=lambda x: x[1], reverse=True)
+        bm25_aitopics_ranked_documents = sorted(self.BM25_ranking(documents_to_rank, sum(weight_idfs.values())).items(), key=lambda x: x[1], reverse=True)
+        tf_idf_ranked_documents = sorted(self.tf_idf_ranking(documents_to_rank, idfs).items(), key=lambda x: x[1], reverse=True)
+        tf_idf_aitopics_ranked_documents = sorted(self.tf_idf_ranking(documents_to_rank, weight_idfs).items(), key=lambda x: x[1], reverse=True)
+        
+        return bm25_ranked_documents[:k], tf_idf_ranked_documents[:k], bm25_aitopics_ranked_documents[:k], tf_idf_aitopics_ranked_documents[:k]
+    
+    def document_frequencies(self):
+        frequencies = {}
+        for block in self.blocks:
+            block_entry_stream = block_entry_generator(block)
+            for term, postings in block_entry_stream:
+                frequencies[term] = len(postings)
+
+        return frequencies
+
+    def BM25_ranking(self,documents_to_rank, sum_of_idfs):
         ranked_documents = {}
 
         for document_to_rank, terms_freq in documents_to_rank.items():
@@ -44,10 +71,21 @@ class SearchEngine(object):
                 else:
                     ranked_documents[document_to_rank] = rsv_d
 
-        sorted_ranked_documents = sorted(ranked_documents.items(), key=lambda x: x[1], reverse=True)
+        return ranked_documents
 
-        return sorted_ranked_documents[:10]
+    def tf_idf_ranking(self, documents_to_rank, idfs):
+        ranked_documents = {}
 
+        for document_to_rank, terms_freq in documents_to_rank.items():
+            for term_freq in terms_freq:
+                if document_to_rank in ranked_documents:
+                    ranked_documents[document_to_rank] += term_freq[1] * idfs[term_freq[0]]
+                else:
+                    ranked_documents[document_to_rank] = term_freq[1] * idfs[term_freq[0]]
+
+        return ranked_documents
+                
+                
     def find_postings(self, term):
         # Find in which block the term can potentially be
         block = SearchEngine.find_block(self.index, term)
